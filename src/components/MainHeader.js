@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../assets/logo.svg';
 // import logo from '../assets/favicon/favicon-128.png';
-import '../App.css';
 
 class MainHeader extends Component {
   render() {
@@ -12,7 +11,5 @@ class MainHeader extends Component {
     );
   }
 }
-
-
 
 export default MainHeader;
