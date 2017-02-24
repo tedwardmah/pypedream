@@ -10,15 +10,22 @@ class DataTable extends Component {
 			columns: [{
 				header: 'URL',
 				accessor: 'url'
-			}, {
+			},
+			{
 				header: 'Domain Name',
 				accessor: 'domain_name'
-			}, {
+			},
+			{
 				header: 'PAR Score',
 				accessor: '24_hour.ad_metrics.par'
-			}, {
+			},
+			{
 				header: 'Ad Starts',
 				accessor: '24_hour.ad_metrics.ad_starts'
+			},
+			{
+				header: 'Ad Opportunities',
+				accessor: '24_hour.ad_metrics.ad_opps'
 			}]
 		}
 	}
@@ -30,7 +37,6 @@ class DataTable extends Component {
 				return response.json();
 			})
 			.then(json => {
-				console.log(json);
 				self.setState({
 					data: json
 				});
@@ -43,9 +49,14 @@ class DataTable extends Component {
   render() {
     return (
       <div className="data-table-container">
+      	<p>Data Length: {this.state.data.length}</p>
       	<ReactTable
       		data={this.state.data}
       		columns={this.state.columns}
+      		defaultPageSize={0}
+      		pageSize={this.state.data.length}
+      		showPagination={false}
+      		showPageSizeOptions={false}
       	/>
       </div>
     );
