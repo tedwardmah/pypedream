@@ -1,0 +1,96 @@
+[{
+  "id":"abington.wickedlocal.com/news/20170216/man-attacked-in-abington-over-snow-removal",
+  "url": "abington.wickedlocal.com/news/20170216/man-attacked-in-abington-over-snow-removal",
+  "domain_name": "abington.wickedlocal.com",
+  "@timestamp": "2017-02-22T00:42:32.165Z",
+  "24_hour": {
+    "ad_metrics": {
+      "par": 0.5,
+      "skip_rank": 0.5,
+      "completion_rank": 0,
+      "ad_starts": 30,
+      "ad_opps": 50,
+      "ad_completes": 60,
+      "fill_rate": 0.7,
+      "util_rate": 0.6
+    },
+    "page_metric": {
+      "pageview": 270,
+      "timespent_rank": 10331.677,
+      "session_initiation_rank": 0,
+      "scroll_rank": 0.937,
+      "click_rank": 0.93
+    }
+  },
+  "advertiser_ids" : ["331565","341482", "280932"],
+  "campaign_ids" : ["1162199","1173754", "963485"],
+  "creative_ids" : ["18005635","18184508", "16032060", "17440514"],
+	"insertion_ids" : ["6314647","6390158", "5474249", "6102841"],
+	"page_ids" : ["652437"],
+  "placement_ids" : ["1"],
+	"publisher_ids" : []
+},
+{
+  "id":"americanmedia.com/someURL",
+  "url": "americanmedia.com/someURL",
+  "domain_name": "americanmedia.com",
+  "@timestamp": "2017-02-22T00:42:32.165Z",
+  "24_hour": {
+    "ad_metrics": {
+      "par": 0.5,
+      "skip_rank": 0.5,
+      "completion_rank": 0,
+      "ad_starts": 30,
+      "ad_opps": 50,
+      "ad_completes": 60,
+      "fill_rate": 0.7,
+      "util_rate": 0.6
+    },
+    "page_metric": {
+      "pageview": 270,
+      "timespent_rank": 10331.677,
+      "session_initiation_rank": 0,
+      "scroll_rank": 0.937,
+      "click_rank": 0.93
+    }
+  },
+  "advertiser_ids" : ["331565", "280932"],
+  "campaign_ids" : ["1162199", "963485"],
+  "creative_ids" : ["18005635","18184508", "16032060", "17440514"],
+  "insertion_ids" : ["6314647","6390158", "5474249", "6102841"],
+  "page_ids" : ["652437"],
+  "placement_ids" : ["1"],
+  "publisher_ids" : []
+},
+{
+  "id":"slate.com/five-signs-you-wont-believe-it",
+  "url": "slate.com/five-signs-you-wont-believe-it",
+  "domain_name": "slate.com",
+  "@timestamp": "2017-02-22T00:42:32.165Z",
+  "24_hour": {
+    "ad_metrics": {
+      "par": 0.5,
+      "skip_rank": 0.5,
+      "completion_rank": 0,
+      "ad_starts": 30,
+      "ad_opps": 50,
+      "ad_completes": 60,
+      "fill_rate": 0.7,
+      "util_rate": 0.6
+    },
+    "page_metric": {
+      "pageview": 270,
+      "timespent_rank": 10331.677,
+      "session_initiation_rank": 0,
+      "scroll_rank": 0.937,
+      "click_rank": 0.93
+    }
+  },
+  "advertiser_ids" : ["341482", "280932"],
+  "campaign_ids" : ["1162199","1173754"],
+  "creative_ids" : ["18005635","18184508", "16032060", "17440514"],
+  "insertion_ids" : ["6314647","6390158", "5474249", "6102841"],
+  "page_ids" : ["652437"],
+  "placement_ids" : ["1"],
+  "publisher_ids" : []
+}]
