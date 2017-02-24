@@ -89,7 +89,7 @@ class DataTable extends Component {
       	<ReactTable
       		data={this.state.data}
       		columns={this.state.columns}
-      		defaultPageSize={10}
+      		defaultPageSize={20}
       		defaultSorting={[{
       			id: "24_hour.ad_metrics.par",
       			desc: true
