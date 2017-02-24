@@ -94,6 +94,7 @@ class DataTable extends Component {
       			id: "24_hour.ad_metrics.par",
       			desc: true
       		}]}
+      		className='-striped -highlight'
       		// pageSize={this.state.data.length}
       		showPagination={true}
       		showPageSizeOptions={true}
