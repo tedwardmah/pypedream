@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import MainHeader from './components/MainHeader.js';
+import DataTable from './components/DataTable.js';
+import DataTableControls from './components/DataTableControls.js';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showTableControls: false
+    }
+  }
+
+  toggleFilterHandler = (shouldShow) => {
+    this.setState({
+      showTableControls: !this.state.showTableControls
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <MainHeader showTableControls={this.state.showTableControls} toggleFilterHandler={this.toggleFilterHandler} />
+        <DataTableControls showTableControls={this.state.showTableControls} />
+        <DataTable />
       </div>
     );
   }
