@@ -16,3 +16,12 @@
 .App-intro {
   font-size: large;
 }
+
+.align-right {
+  text-align: right;
+}
+
+/*.data-table-container {
+  margin-left: 1em;
+  margin-right: 1em;
+}*/

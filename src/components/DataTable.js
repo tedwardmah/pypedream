@@ -16,16 +16,52 @@ class DataTable extends Component {
 				accessor: 'domain_name'
 			},
 			{
-				header: 'PAR Score',
-				accessor: '24_hour.ad_metrics.par'
+				header: 'Ad Opportunities',
+				accessor: '24_hour.ad_metrics.ad_opps',
+				className: 'align-right',
+				headerClassName: 'align-right'
 			},
 			{
 				header: 'Ad Starts',
-				accessor: '24_hour.ad_metrics.ad_starts'
+				accessor: '24_hour.ad_metrics.ad_starts',
+				className: 'align-right',
+				headerClassName: 'align-right'
 			},
 			{
-				header: 'Ad Opportunities',
-				accessor: '24_hour.ad_metrics.ad_opps'
+				header: 'Ad Completions',
+				accessor: '24_hour.ad_metrics.ad_completes',
+				className: 'align-right',
+				headerClassName: 'align-right'
+			},
+			{
+				header: 'Completion Rank',
+				accessor: '24_hour.ad_metrics.completion_rank',
+				className: 'align-right',
+				headerClassName: 'align-right'
+			},
+			{
+				header: 'Skip Rank',
+				accessor: '24_hour.ad_metrics.skip_rank',
+				className: 'align-right',
+				headerClassName: 'align-right'
+			},
+			{
+				header: 'Fill Rate',
+				accessor: '24_hour.ad_metrics.fill_rate',
+				className: 'align-right',
+				headerClassName: 'align-right'
+			},
+			{
+				header: 'Utilization Rate',
+				accessor: '24_hour.ad_metrics.util_rate',
+				className: 'align-right',
+				headerClassName: 'align-right'
+			},
+			{
+				header: 'PAR Score',
+				accessor: '24_hour.ad_metrics.par',
+				className: 'align-right',
+				headerClassName: 'align-right'
 			}]
 		}
 	}
@@ -47,16 +83,20 @@ class DataTable extends Component {
 	}
 
   render() {
+
     return (
       <div className="data-table-container">
-      	<p>Data Length: {this.state.data.length}</p>
       	<ReactTable
       		data={this.state.data}
       		columns={this.state.columns}
-      		defaultPageSize={0}
-      		pageSize={this.state.data.length}
-      		showPagination={false}
-      		showPageSizeOptions={false}
+      		defaultPageSize={10}
+      		defaultSorting={[{
+      			id: "24_hour.ad_metrics.par",
+      			desc: true
+      		}]}
+      		// pageSize={this.state.data.length}
+      		showPagination={true}
+      		showPageSizeOptions={true}
       	/>
       </div>
     );
