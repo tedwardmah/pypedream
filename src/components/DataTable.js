@@ -6,63 +6,7 @@ class DataTable extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: [],
-			columns: [{
-				header: 'URL',
-				accessor: 'url'
-			},
-			{
-				header: 'Domain Name',
-				accessor: 'domain_name'
-			},
-			{
-				header: 'Ad Opportunities',
-				accessor: '24_hour.ad_metrics.ad_opps',
-				className: 'align-right',
-				headerClassName: 'align-right'
-			},
-			{
-				header: 'Ad Starts',
-				accessor: '24_hour.ad_metrics.ad_starts',
-				className: 'align-right',
-				headerClassName: 'align-right'
-			},
-			{
-				header: 'Ad Completions',
-				accessor: '24_hour.ad_metrics.ad_completes',
-				className: 'align-right',
-				headerClassName: 'align-right'
-			},
-			{
-				header: 'Completion Rank',
-				accessor: '24_hour.ad_metrics.completion_rank',
-				className: 'align-right',
-				headerClassName: 'align-right'
-			},
-			{
-				header: 'Skip Rank',
-				accessor: '24_hour.ad_metrics.skip_rank',
-				className: 'align-right',
-				headerClassName: 'align-right'
-			},
-			{
-				header: 'Fill Rate',
-				accessor: '24_hour.ad_metrics.fill_rate',
-				className: 'align-right',
-				headerClassName: 'align-right'
-			},
-			{
-				header: 'Utilization Rate',
-				accessor: '24_hour.ad_metrics.util_rate',
-				className: 'align-right',
-				headerClassName: 'align-right'
-			},
-			{
-				header: 'PAR Score',
-				accessor: '24_hour.ad_metrics.par',
-				className: 'align-right',
-				headerClassName: 'align-right'
-			}]
+			data: []
 		}
 	}
 
@@ -88,7 +32,7 @@ class DataTable extends Component {
       <div className="data-table-container">
       	<ReactTable
       		data={this.state.data}
-      		columns={this.state.columns}
+      		columns={this.props.columnsConfig}
       		defaultPageSize={20}
       		defaultSorting={[{
       			id: "24_hour.ad_metrics.par",
