@@ -12,13 +12,15 @@ class DataTable extends Component {
 
 	componentDidMount() {
 		var self = this;
-		fetch('/attention.json')
+		// fetch('/attention.json')
+		fetch('http://10.10.0.92:3002/pages')
 			.then(response => {
 				return response.json();
 			})
 			.then(json => {
+				var smallerDataSet = json.message.slice(0, 1000);
 				self.setState({
-					data: json
+					data: smallerDataSet
 				});
 			})
 			.catch(function(err) {

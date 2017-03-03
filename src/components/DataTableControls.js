@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-class ListGroupToggler extends Component {
-  onListItemToggle = (event) => {
-    this.props.onListItemToggle(event);
-  }
-
+class TableColumnToggler extends Component {
   render() {
-    const listItems = this.props.listItems.map((listItem) =>
-      <ListGroupItem key={listItem._id} onClick={this.onListItemToggle} active={listItem.active}>{listItem.label}</ListGroupItem>
+    const tableColumns = this.props.tableColumns.map((tableColumn) =>
+      <ListGroupItem
+        key={tableColumn.accessor}
+        onClick={() => this.props.onColumnNameToggled(tableColumn)}
+        active={tableColumn.show}
+      >
+        {tableColumn.header}
+      </ListGroupItem>
     )
 
     return(
       <ListGroup>
-        {listItems}
+        {tableColumns}
       </ListGroup>
     );
   }
@@ -21,14 +23,13 @@ class ListGroupToggler extends Component {
 
 
 class DataTableControls extends Component {
-
-  checkboxClickHandler = (event) => {
-    console.log(event);
-  }
-
   render() {
-    const columnsConfig = this.props.columnsConfig;
+    const tableColumns = this.props.tableColumns;
     const showTableControls = this.props.showTableControls;
+
+    const halfIndex = Math.round(tableColumns.length / 2);
+    const tableColumnsGroup1 = tableColumns.slice(0, halfIndex);
+    const tableColumnsGroup2 = tableColumns.slice(halfIndex, tableColumns.length);
 
     return (
       <div className="data-table-controls">
@@ -37,7 +38,12 @@ class DataTableControls extends Component {
 
           </div>
           <div className="col-sm-6">
-            <ListGroupToggler listItems={columnsConfig} onListItemToggle={this.checkboxClickHandler}/>
+            <div className="col-sm-6">
+              <TableColumnToggler tableColumns={tableColumnsGroup1} onColumnNameToggled={this.props.onColumnToggled}/>
+            </div>
+            <div className="col-sm-6">
+              <TableColumnToggler tableColumns={tableColumnsGroup2} onColumnNameToggled={this.props.onColumnToggled}/>
+            </div>
           </div>
         </Panel>
       </div>
