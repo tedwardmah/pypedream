@@ -3,8 +3,8 @@ import MainHeader from './components/MainHeader.js';
 import DataTable from './components/DataTable.js';
 import DataTableControls from './components/DataTableControls.js';
 import columnsConfig from './config/tableColumns.js'
-import './App.css';
 import '../node_modules/react-select/dist/react-select.css';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchPages();
+    this.fetchPages('/pages/random?limit=1000');
   }
 
   toggleFilters = (shouldShow) => {
@@ -26,22 +26,21 @@ class App extends Component {
     });
   }
 
-  fetchPages = () => {
+  fetchPages = (url) => {
     var self = this;
-    fetch('/attention.json')
-    // fetch('http://10.10.0.92:3002/pages')
+    // fetch('/attention.json')
+    fetch('http://10.10.0.92:3002' + url)
       .then(response => {
         return response.json();
       })
       .then(json => {
-        // var smallerDataSet = json.message.slice(0, 1000);
         self.setState({
-          tableData: json
-          // data: smallerDataSet
+          // tableData: json
+          tableData: json.message.concat()
         });
       })
       .catch(function(err) {
-        console.log('No data found');
+        console.log('No data found', err);
       });
   }
 
@@ -58,8 +57,8 @@ class App extends Component {
   }
 
   refreshTableData = (formData) => {
-    console.log('got the form data', formData);
-    this.fetchPages();
+    var url = '/pages/random?limit=' + formData.count
+    this.fetchPages(url);
   }
 
   render() {

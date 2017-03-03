@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import RefreshDataForm from './RefreshDataForm.js';
-// import Checkbox from './Checkbox.js';
 import { Panel, ListGroup, ListGroupItem, Checkbox } from 'react-bootstrap';
 
 class TableColumnToggler extends Component {
   render() {
     const tableColumns = this.props.tableColumns.map((tableColumn) =>
       <ListGroupItem
-        className="text-left suppress-focus-indicator"
+        className="text-left suppress-focus-indicator list-group-item-column-toggle"
         key={tableColumn.accessor}
       >
         <Checkbox
-          onClick={() => this.props.onColumnNameToggled(tableColumn)}
+          onChange={() => this.props.onColumnNameToggled(tableColumn)}
           checked={tableColumn.show}
         >
           {tableColumn.header}

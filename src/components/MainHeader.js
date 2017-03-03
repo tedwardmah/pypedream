@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo from '../assets/logo.svg';
-// import logo from '../assets/favicon/favicon-128.png';
 import { Button } from 'react-bootstrap';
 
 class MainHeader extends Component {
