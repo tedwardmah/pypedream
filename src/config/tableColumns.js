@@ -87,7 +87,7 @@ var tableColumnsConfig = [{
   },
   {
     header: 'Time Spent Rank',
-    accessor: 'twentyfour_hour.page_metrics.time_spent',
+    accessor: 'twentyfour_hour.page_metrics.timespent_rank',
     className: 'align-right',
     headerClassName: 'align-right',
     show: true

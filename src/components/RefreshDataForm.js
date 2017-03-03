@@ -28,10 +28,10 @@ class RefreshDataForm extends Component {
       <div className="row">
         <Form inline>
           <FormGroup controlId="topBottomSelector">
-            <DropdownButton title="Top" id="dropdown-size-large">
-              <MenuItem eventKey="1">Top</MenuItem>
-              <MenuItem eventKey="2" disabled>Bottom</MenuItem>
-              <MenuItem eventKey="3" disabled>Random</MenuItem>
+            <DropdownButton title="Random" id="dropdown-size-large">
+              <MenuItem eventKey="1">Random</MenuItem>
+              <MenuItem eventKey="2" disabled>Top</MenuItem>
+              <MenuItem eventKey="3" disabled>Bottom</MenuItem>
             </DropdownButton>
           </FormGroup>
           {' '}
@@ -45,7 +45,7 @@ class RefreshDataForm extends Component {
           {' '}
         </Form>
         <div className="row inline-form-submit">
-          <Button onClick={this.handleSubmit} type="submit">Fetch New Data</Button>
+          <Button onClick={this.handleSubmit} type="submit"><span className="glyphicon glyphicon-circle-arrow-down"></span> Fetch New Data</Button>
         </div>
       </div>
     )
