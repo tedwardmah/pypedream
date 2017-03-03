@@ -24,7 +24,25 @@ router.get("/",function(req,res){
 // (1) Add null/datatype tests for query params 
 // (2) Add better err msg 
 // (3) Move route logic out of server.js
-// (4) Add audience routes
+
+router.route("/settings/audienceId")
+    .get(function(req,res){
+        var response = {};
+ 
+	var limit = parseInt(req.query.limit);
+      
+	Page.find({}).sort({'label': -1})..exec()
+		.then(function(data) {
+			response = {"error" : false,"message" : data};
+        		res.json(response);
+
+		})
+		.catch(function(err){
+	              response = {"error" : true,"message" : err};
+        	      res.json(response);
+		})
+});
+
 
 router.route("/pages")
     .get(function(req,res){
