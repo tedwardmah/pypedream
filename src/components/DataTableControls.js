@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
-import { Panel, ListGroup, ListGroupItem, Button, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
+import RefreshDataForm from './RefreshDataForm.js';
+// import Checkbox from './Checkbox.js';
+import { Panel, ListGroup, ListGroupItem, Checkbox } from 'react-bootstrap';
 
 class TableColumnToggler extends Component {
   render() {
     const tableColumns = this.props.tableColumns.map((tableColumn) =>
       <ListGroupItem
+        className="text-left suppress-focus-indicator"
         key={tableColumn.accessor}
-        onClick={() => this.props.onColumnNameToggled(tableColumn)}
-        active={tableColumn.show}
       >
-        {tableColumn.header}
+        <Checkbox
+          onClick={() => this.props.onColumnNameToggled(tableColumn)}
+          checked={tableColumn.show}
+        >
+          {tableColumn.header}
+        </Checkbox>
       </ListGroupItem>
     )
 
@@ -18,45 +24,6 @@ class TableColumnToggler extends Component {
         {tableColumns}
       </ListGroup>
     );
-  }
-}
-
-class RefreshDataForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      topN: ''
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({topN: event.target.value});
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.onSubmit({
-      topN: this.state.topN
-    });
-  }
-
-  render() {
-    return (
-      <Form inline onSubmit={this.handleSubmit}>
-        <FormGroup controlId="name">
-          <ControlLabel>
-            Top N Pages (by PAR):
-          </ControlLabel>
-          {' '}
-          <FormControl type="number" value={this.state.topN} onChange={this.handleChange} />
-        </FormGroup>
-        {' '}
-        <Button type="submit">Fetch New Data</Button>
-      </Form>
-    )
   }
 }
 

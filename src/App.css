@@ -27,10 +27,16 @@
 }*/
 
 .panel-controls-left {
-  border-right: 1px solid rgb(221, 221, 221);
+  padding-top: 1em;
+  /*border-right: 1px solid rgb(221, 221, 221);*/
 }
 
 .panel-controls-right {
   padding-top: 1em;
   border-left: 1px solid rgb(221, 221, 221);
+}
+
+.suppress-focus-indicator:focus {
+  border: none;
+  outline: none;
 }
