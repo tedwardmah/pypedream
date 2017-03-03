@@ -1,5 +1,5 @@
 var mongoose    =   require("mongoose");
-mongoose.connect('mongodb://localhost:27017/pypedream');
+mongoose.connect('mongodb://10.10.0.92:27017/pypedream');
 
 // create instance of Schema
 var mongoSchema =   mongoose.Schema;
