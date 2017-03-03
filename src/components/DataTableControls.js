@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Panel, ListGroup, ListGroupItem, Button, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 
 class TableColumnToggler extends Component {
   render() {
@@ -21,6 +21,44 @@ class TableColumnToggler extends Component {
   }
 }
 
+class RefreshDataForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topN: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({topN: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.onSubmit({
+      topN: this.state.topN
+    });
+  }
+
+  render() {
+    return (
+      <Form inline onSubmit={this.handleSubmit}>
+        <FormGroup controlId="name">
+          <ControlLabel>
+            Top N Pages (by PAR):
+          </ControlLabel>
+          {' '}
+          <FormControl type="number" value={this.state.topN} onChange={this.handleChange} />
+        </FormGroup>
+        {' '}
+        <Button type="submit">Fetch New Data</Button>
+      </Form>
+    )
+  }
+}
 
 class DataTableControls extends Component {
   render() {
@@ -36,7 +74,7 @@ class DataTableControls extends Component {
         <Panel collapsible expanded={showTableControls}>
           <div className='row'>
             <div className="col-sm-6 panel-controls-left">
-
+              <RefreshDataForm onSubmit={this.props.onRefreshDataFormSubmit}/>
             </div>
             <div className="col-sm-6 panel-controls-right">
               <div className="row">

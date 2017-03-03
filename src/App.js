@@ -16,7 +16,17 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
+    this.fetchPages();
+  }
+
+  toggleFilters = (shouldShow) => {
+    this.setState({
+      showTableControls: !this.state.showTableControls
+    });
+  }
+
+  fetchPages = () => {
     var self = this;
     fetch('/attention.json')
     // fetch('http://10.10.0.92:3002/pages')
@@ -35,12 +45,6 @@ class App extends Component {
       });
   }
 
-  toggleFilters = (shouldShow) => {
-    this.setState({
-      showTableControls: !this.state.showTableControls
-    });
-  }
-
   onColumnToggled = (toggledColumn) => {
     var newConfig = this.state.columnsConfig;
     newConfig.forEach((column) => {
@@ -51,15 +55,23 @@ class App extends Component {
     this.setState({
       columnsConfig: newConfig.concat()
     })
+  }
 
+  refreshTableData = (formData) => {
+    console.log('got the form data', formData);
+    this.fetchPages();
   }
 
   render() {
     return (
       <div className="App">
-        <MainHeader showTableControls={this.state.showTableControls} toggleFilterHandler={this.toggleFilters} />
+        <MainHeader
+          showTableControls={this.state.showTableControls}
+          toggleFilterHandler={this.toggleFilters}
+        />
         <DataTableControls
           showTableControls={this.state.showTableControls}
+          onRefreshDataFormSubmit={this.refreshTableData}
           onColumnToggled={this.onColumnToggled}
           tableColumns={this.state.columnsConfig}
         />
