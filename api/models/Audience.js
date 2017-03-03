@@ -1,12 +1,11 @@
 var mongoose    =   require("mongoose");
-mongoose.connect('mongodb://10.10.0.92:27017/pypedream');
 
 // create instance of Schema
 var mongoSchema =   mongoose.Schema;
 
 // cleate schema
 var audienceSchema  = ({
-	aud_id: Integer,
+	aud_id: Number,
 	label: String
 });
 
