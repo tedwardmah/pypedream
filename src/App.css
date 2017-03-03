@@ -25,3 +25,12 @@
   margin-left: 1em;
   margin-right: 1em;
 }*/
+
+.panel-controls-left {
+  border-right: 1px solid rgb(221, 221, 221);
+}
+
+.panel-controls-right {
+  padding-top: 1em;
+  border-left: 1px solid rgb(221, 221, 221);
+}

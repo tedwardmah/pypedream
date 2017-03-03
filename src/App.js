@@ -2,90 +2,40 @@ import React, { Component } from 'react';
 import MainHeader from './components/MainHeader.js';
 import DataTable from './components/DataTable.js';
 import DataTableControls from './components/DataTableControls.js';
+import columnsConfig from './config/tableColumns.js'
 import './App.css';
+import '../node_modules/react-select/dist/react-select.css';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      tableData: [],
       showTableControls: true,
-      columnsConfig: [{
-        header: 'URL',
-        accessor: 'url',
-        show: true
-      },
-      {
-        header: 'Domain Name',
-        accessor: 'domain_name',
-        show: true
-      },
-      {
-        header: 'Ad Opportunities',
-        accessor: 'twentyfour_hour.ad_metrics.ad_opps',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      },
-      {
-        header: 'Ad Starts',
-        accessor: 'twentyfour_hour.ad_metrics.ad_starts',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      },
-      {
-        header: 'Ad Completions',
-        accessor: 'twentyfour_hour.ad_metrics.ad_completes',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      },
-      {
-        header: 'Completion Rank',
-        accessor: 'twentyfour_hour.ad_metrics.completion_rank',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      },
-      {
-        header: 'Skip Rank',
-        accessor: 'twentyfour_hour.ad_metrics.skip_rank',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      },
-      {
-        header: 'Fill Rate',
-        accessor: 'twentyfour_hour.ad_metrics.fill_rate',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      },
-      {
-        header: 'Utilization Rate',
-        accessor: 'twentyfour_hour.ad_metrics.util_rate',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      },
-      {
-        header: 'Page Views',
-        accessor: 'twentyfour_hour.page_metrics.pageview',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      },
-      {
-        header: 'PAR Score',
-        accessor: 'twentyfour_hour.ad_metrics.par',
-        className: 'align-right',
-        headerClassName: 'align-right',
-        show: true
-      }]
+      columnsConfig: columnsConfig
     }
   }
 
-  toggleFilterHandler = (shouldShow) => {
+  componentDidMount() {
+    var self = this;
+    fetch('/attention.json')
+    // fetch('http://10.10.0.92:3002/pages')
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        // var smallerDataSet = json.message.slice(0, 1000);
+        self.setState({
+          tableData: json
+          // data: smallerDataSet
+        });
+      })
+      .catch(function(err) {
+        console.log('No data found');
+      });
+  }
+
+  toggleFilters = (shouldShow) => {
     this.setState({
       showTableControls: !this.state.showTableControls
     });
@@ -107,13 +57,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <MainHeader showTableControls={this.state.showTableControls} toggleFilterHandler={this.toggleFilterHandler} />
+        <MainHeader showTableControls={this.state.showTableControls} toggleFilterHandler={this.toggleFilters} />
         <DataTableControls
           showTableControls={this.state.showTableControls}
           onColumnToggled={this.onColumnToggled}
           tableColumns={this.state.columnsConfig}
         />
-        <DataTable columnsConfig={this.state.columnsConfig} />
+        <DataTable
+          tableData={this.state.tableData}
+          columnsConfig={this.state.columnsConfig}
+        />
       </div>
     );
   }

@@ -34,15 +34,19 @@ class DataTableControls extends Component {
     return (
       <div className="data-table-controls">
         <Panel collapsible expanded={showTableControls}>
-          <div className="col-sm-6">
+          <div className='row'>
+            <div className="col-sm-6 panel-controls-left">
 
-          </div>
-          <div className="col-sm-6">
-            <div className="col-sm-6">
-              <TableColumnToggler tableColumns={tableColumnsGroup1} onColumnNameToggled={this.props.onColumnToggled}/>
             </div>
-            <div className="col-sm-6">
-              <TableColumnToggler tableColumns={tableColumnsGroup2} onColumnNameToggled={this.props.onColumnToggled}/>
+            <div className="col-sm-6 panel-controls-right">
+              <div className="row">
+                <div className="col-sm-6">
+                  <TableColumnToggler tableColumns={tableColumnsGroup1} onColumnNameToggled={this.props.onColumnToggled}/>
+                </div>
+                <div className="col-sm-6">
+                  <TableColumnToggler tableColumns={tableColumnsGroup2} onColumnNameToggled={this.props.onColumnToggled}/>
+                </div>
+              </div>
             </div>
           </div>
         </Panel>
