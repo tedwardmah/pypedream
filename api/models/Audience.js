@@ -6,7 +6,7 @@ var mongoSchema =   mongoose.Schema;
 
 // cleate schema
 var audienceSchema  = ({
-	id: String,
+	aud_id: Integer,
 	label: String
 });
 
