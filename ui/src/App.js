@@ -3,7 +3,7 @@ import MainHeader from './components/MainHeader.js';
 import DataTable from './components/DataTable.js';
 import DataTableControls from './components/DataTableControls.js';
 import columnsConfig from './config/tableColumns.js'
-import '../node_modules/react-select/dist/react-select.css';
+// import '../node_modules/react-select/dist/react-select.css';
 import './App.css';
 
 class App extends Component {
