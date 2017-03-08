@@ -1,4 +1,4 @@
-## Installation Instructions
+## Installation Instructions (React)
 
 - Install node if you do not have it already (https://nodejs.org/en/download/)
 - `npm install`
@@ -17,6 +17,61 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+## Installation Instructions for Pypedream API using Express & Moongoose
+
+- Install node if you do not have it already (https://nodejs.org/en/download/)
+- `npm install`
+- `node ./api/server.js &`
+
+Assuming you are within GM's network, make a simple HTTP /GET request to, for example, `http://127.0.0.1:3002/pages?limit=10` to get a limited list of ADG page attention rank pages. The API calls that can be made are described below. Details for adding par pages data to your own Mongo DB will be provided shortly.
+
+`
+API Calls
+
+1. /settings/audienceId
+Returns: Lotame audience_id mappings json
+[{
+    _id: '123',
+    label: 'Auto'
+}, {
+    _id: '456',
+    label: 'Sports'
+}]
+
+
+2. /pages/top?limit={num}:
+Params:
+  limit=The number of results to return
+Returns: Top pages (default by PAR score)
+[
+  mongoPageObjects x limit
+]
+
+3. /pages/bottom?limit={num}:
+Params:
+  limit=The number of results to return
+Returns: Bottom pages (default by PAR score)
+[
+  mongoPageObjects x limit
+]
+
+
+4. /pages/random?limit={num}:
+Params:
+  limit=The number of results to return
+Returns: Random pages
+[
+  mongoPageObjects x limit
+]
+`
+-------------------
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+Below you will find some information on how to perform common tasks.<br>
+You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
 
 ## Table of Contents
 
