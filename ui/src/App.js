@@ -11,7 +11,7 @@ class App extends Component {
     super(props)
     this.state = {
       tableData: [],
-      showTableControls: false,
+      showTableControls: true,
       columnsConfig: columnsConfig
     }
   }
@@ -57,7 +57,7 @@ class App extends Component {
   }
 
   refreshTableData = (formData) => {
-    var url = '/pages/random?limit=' + formData.count
+    var url = '/pages/' + formData.parComposition + '?limit=' + formData.count
     this.fetchPages(url);
   }
 
