@@ -1,42 +1,51 @@
 import React, { Component } from 'react';
 import { Button, Form, ControlLabel, FormGroup, FormControl, DropdownButton, MenuItem } from 'react-bootstrap';
+import menuOptionsConfig from '../config/menuOptionsConfig.js';
 
 class RefreshDataForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: '1000'
+      resultCount: '1000',
+      parComposition: menuOptionsConfig.parCompositionOptions[0],
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({count: event.target.value});
+  onResultCountChange = (event) => {
+    this.setState({resultCount: event.target.value});
   }
 
-  handleSubmit(event) {
+  onParCompositionSelect = (eventKey, event) => {
+    var newOption = menuOptionsConfig.parCompositionOptions.find(option => option.value === eventKey);
+    this.setState({parComposition: newOption});
+  }
+
+  onRefreshDataFormSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit({
-      count: this.state.count
+      count: this.state.resultCount,
+      parComposition: this.state.parComposition.value
     });
   }
 
   render() {
+    const parCompositionOptions = menuOptionsConfig.parCompositionOptions.map((parCompositionOption) =>
+      <MenuItem key={parCompositionOption.value} eventKey={parCompositionOption.value}>
+        {parCompositionOption.label}
+      </MenuItem>
+    )
+
     return (
       <div className="row">
         <Form inline>
-          <FormGroup controlId="topBottomSelector">
-            <DropdownButton title="Random" id="dropdown-size-large">
-              <MenuItem eventKey="1">Random</MenuItem>
-              <MenuItem eventKey="2" disabled>Top</MenuItem>
-              <MenuItem eventKey="3" disabled>Bottom</MenuItem>
+          <FormGroup controlId="parCompositionSelector">
+            <DropdownButton onSelect={this.onParCompositionSelect} title={this.state.parComposition.label} id="dropdown-size-large">
+              {parCompositionOptions}
             </DropdownButton>
           </FormGroup>
           {' '}
           <FormGroup controlId="resultCountInput">
-            <FormControl type="number" value={this.state.count} onChange={this.handleChange} />
+            <FormControl type="number" value={this.state.resultCount} onChange={this.onResultCountChange} />
             {' '}
             <ControlLabel>
               Pages (by PAR)
@@ -45,7 +54,7 @@ class RefreshDataForm extends Component {
           {' '}
         </Form>
         <div className="row inline-form-submit">
-          <Button onClick={this.handleSubmit} type="submit"><span className="glyphicon glyphicon-circle-arrow-down"></span> Fetch New Data</Button>
+          <Button onClick={this.onRefreshDataFormSubmit} type="submit"><span className="glyphicon glyphicon-circle-arrow-down"></span> Fetch New Data</Button>
         </div>
       </div>
     )
