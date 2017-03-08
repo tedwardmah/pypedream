@@ -48,3 +48,13 @@
 .inline-form-submit {
   margin-top: 1em;
 }
+
+#resultCountInput {
+  width: 6em;
+}
+
+/* Chrome styling to always show number spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+   opacity: 1;
+}

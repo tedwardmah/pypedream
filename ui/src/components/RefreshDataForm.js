@@ -6,13 +6,13 @@ class RefreshDataForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: '1000',
+      resultCount: '1000',
       parComposition: menuOptionsConfig.parCompositionOptions[0],
     };
   }
 
   onResultCountChange = (event) => {
-    this.setState({count: event.target.value});
+    this.setState({resultCount: event.target.value});
   }
 
   onParCompositionSelect = (eventKey, event) => {
@@ -23,7 +23,7 @@ class RefreshDataForm extends Component {
   onRefreshDataFormSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit({
-      count: this.state.count,
+      count: this.state.resultCount,
       parComposition: this.state.parComposition.value
     });
   }
@@ -45,7 +45,7 @@ class RefreshDataForm extends Component {
           </FormGroup>
           {' '}
           <FormGroup controlId="resultCountInput">
-            <FormControl type="number" value={this.state.count} onChange={this.onResultCountChange} />
+            <FormControl type="number" value={this.state.resultCount} onChange={this.onResultCountChange} />
             {' '}
             <ControlLabel>
               Pages (by PAR)
