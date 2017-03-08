@@ -39,7 +39,7 @@ var buildPageDataArray = function (data) {
         dataObject = {
             url: url,
             domain_name: domain,
-            "24_hour": {
+            twentyfour_hour: {
                 ad_metrics: {
                     par: randomFloatBetween(0, 1, 2),
                     skip_rank: randomFloatBetween(0, 1, 2),
