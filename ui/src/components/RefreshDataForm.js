@@ -36,7 +36,7 @@ class RefreshDataForm extends Component {
     )
 
     return (
-      <div className="row">
+      <div className="col-lg-6 col-md-12">
         <Form inline>
           <FormGroup controlId="parCompositionSelector">
             <DropdownButton onSelect={this.onParCompositionSelect} title={this.state.parComposition.label} id="dropdown-size-large">

@@ -1,30 +1,8 @@
 import React, { Component } from 'react';
 import RefreshDataForm from './RefreshDataForm.js';
-import { Panel, ListGroup, ListGroupItem, Checkbox } from 'react-bootstrap';
-
-class TableColumnToggler extends Component {
-  render() {
-    const tableColumns = this.props.tableColumns.map((tableColumn) =>
-      <ListGroupItem
-        className="text-left suppress-focus-indicator list-group-item-column-toggle"
-        key={tableColumn.accessor}
-      >
-        <Checkbox
-          onChange={() => this.props.onColumnNameToggled(tableColumn)}
-          checked={tableColumn.show}
-        >
-          {tableColumn.header}
-        </Checkbox>
-      </ListGroupItem>
-    )
-
-    return(
-      <ListGroup>
-        {tableColumns}
-      </ListGroup>
-    );
-  }
-}
+import TableColumnToggler from './TableColumnToggler.js';
+import MultiselectFilter from './MultiselectFilter.js';
+import { Panel } from 'react-bootstrap';
 
 class DataTableControls extends Component {
   render() {
@@ -40,8 +18,18 @@ class DataTableControls extends Component {
         <Panel collapsible expanded={showTableControls}>
           <div className='row'>
             <div className="col-sm-6 panel-controls-left">
-              <RefreshDataForm onSubmit={this.props.onRefreshDataFormSubmit}/>
+              <div className="row">
+                <RefreshDataForm className="col-sm-6" onSubmit={this.props.onRefreshDataFormSubmit}/>
+                <MultiselectFilter
+                  name="audience-id-filter"
+                  onChange={this.props.onAudienceIdFilterChange}
+                  selectedOptions={this.props.selectedAudienceIds}
+                />
+              </div>
+              <div className="row">
+              </div>
             </div>
+
             <div className="col-sm-6 panel-controls-right">
               <div className="row">
                 <div className="col-sm-6">

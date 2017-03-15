@@ -3,27 +3,45 @@ import MainHeader from './components/MainHeader.js';
 import DataTable from './components/DataTable.js';
 import DataTableControls from './components/DataTableControls.js';
 import columnsConfig from './config/tableColumns.js'
-// import '../node_modules/react-select/dist/react-select.css';
-import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       tableData: [],
+      rawData: [],
       showTableControls: true,
-      columnsConfig: columnsConfig
+      columnsConfig: columnsConfig,
+      selectedAudienceIds: []
     }
   }
 
   componentDidMount = () => {
-    this.fetchPages('/pages/random?limit=1000');
+    // this.fetchPages('/pages/random?limit=1000');
+    this.fetchPagesMock();
   }
 
   toggleFilters = (shouldShow) => {
     this.setState({
       showTableControls: !this.state.showTableControls
     });
+  }
+
+  fetchPagesMock = () => {
+    var self = this;
+    fetch('/attention.json')
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        self.setState({
+          rawData: json,
+          tableData: json
+        });
+      })
+      .catch(function(err) {
+        console.log('No data found', err);
+      });
   }
 
   fetchPages = (url) => {
@@ -44,6 +62,34 @@ class App extends Component {
       });
   }
 
+  filterTableData = (path, audienceIdObjects) => {
+    if (audienceIdObjects.length === 0) { // Filter cleared
+      this.setState({
+        tableData: this.state.rawData.concat()
+      });
+    } else {
+      var audienceIds = audienceIdObjects.map(audienceIdObject => audienceIdObject.value);
+      var tableData = this.state.rawData.filter(function(tableRow) {
+        var shouldShow = false;
+        audienceIds.forEach(function(audienceId) {
+          if (tableRow[path].includes(parseInt(audienceId, 10))) {
+            shouldShow = true;
+          }
+        });
+        return shouldShow;
+      });
+      this.setState({
+        tableData: tableData
+      });
+
+    }
+  }
+
+  filterByAudienceId = (value) => {
+    this.setState({selectedAudienceIds: value});
+    this.filterTableData('audienceIds', value);
+  }
+
   onColumnToggled = (toggledColumn) => {
     var newConfig = this.state.columnsConfig;
     newConfig.forEach((column) => {
@@ -57,8 +103,9 @@ class App extends Component {
   }
 
   refreshTableData = (formData) => {
-    var url = '/pages/' + formData.parComposition + '?limit=' + formData.count
-    this.fetchPages(url);
+    // var url = '/pages/' + formData.parComposition + '?limit=' + formData.count;
+    // this.fetchPages(url);
+    this.fetchPagesMock();
   }
 
   render() {
@@ -71,6 +118,8 @@ class App extends Component {
         <DataTableControls
           showTableControls={this.state.showTableControls}
           onRefreshDataFormSubmit={this.refreshTableData}
+          selectedAudienceIds={this.state.selectedAudienceIds}
+          onAudienceIdFilterChange={this.filterByAudienceId}
           onColumnToggled={this.onColumnToggled}
           tableColumns={this.state.columnsConfig}
         />

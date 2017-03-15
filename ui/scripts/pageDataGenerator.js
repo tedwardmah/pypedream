@@ -22,6 +22,21 @@ function randomFloatBetween(min,max,precision){
     return parseFloat(Math.min(minValue + (Math.random() * (maxValue - minValue)),maxValue).toFixed(precision));
 }
 
+function pickRandomIds(minIds, maxIds) {
+    var randomIdArray = []
+    var baseIds = [1, 2, 3, 4, 5];
+    var maxNumIds = Math.min(baseIds.length, maxIds);
+    var numberOfIds = randomFloatBetween(minIds, maxNumIds, 0);
+
+    var randomIndex;
+    for (var i=0; i < numberOfIds; i++) {
+        randomIndex = randomFloatBetween(0, baseIds.length - 1, 0);
+        randomIdArray.push(baseIds.splice(randomIndex, 1)[0]);
+    }
+
+    return randomIdArray;
+}
+
 var buildPageDataArray = function (data) {
     var returnArray = [];
     var dataObject = {};
@@ -57,7 +72,8 @@ var buildPageDataArray = function (data) {
                     scroll_rank: randomFloatBetween(0, 1, 2),
                     click_rank: randomFloatBetween(0, 1, 2)
                 }
-            }
+            },
+            audienceIds: pickRandomIds(0, 4)
 
         }
         returnArray.push(dataObject);
