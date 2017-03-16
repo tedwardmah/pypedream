@@ -95,6 +95,7 @@ class App extends Component {
     newConfig.forEach((column) => {
       if (column.accessor === toggledColumn.accessor) {
         column.show = !column.show;
+        column.columns[0].show = !column.columns[0].show;
       }
     });
     this.setState({

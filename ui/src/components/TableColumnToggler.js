@@ -12,7 +12,7 @@ class TableColumnToggler extends Component {
           onChange={() => this.props.onColumnNameToggled(tableColumn)}
           checked={tableColumn.show}
         >
-          {tableColumn.header}
+          {tableColumn.columns[0].header}
         </Checkbox>
       </ListGroupItem>
     )

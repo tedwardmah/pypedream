@@ -19,12 +19,14 @@ class DataTableControls extends Component {
           <div className='row'>
             <div className="col-sm-6 panel-controls-left">
               <div className="row">
-                <RefreshDataForm className="col-sm-6" onSubmit={this.props.onRefreshDataFormSubmit}/>
-                <MultiselectFilter
-                  name="audience-id-filter"
-                  onChange={this.props.onAudienceIdFilterChange}
-                  selectedOptions={this.props.selectedAudienceIds}
-                />
+                <RefreshDataForm className="col-lg-6" onSubmit={this.props.onRefreshDataFormSubmit}/>
+                <div className="form-horizontal col-lg-6">
+                  <MultiselectFilter
+                    name="audience-id-filter"
+                    onChange={this.props.onAudienceIdFilterChange}
+                    selectedOptions={this.props.selectedAudienceIds}
+                  />
+                </div>
               </div>
               <div className="row">
               </div>

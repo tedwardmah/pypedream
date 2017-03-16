@@ -16,14 +16,15 @@ class MultiselectFilter extends Component {
     ];
 
     return(
-      <div className="col-lg-6">
-          <label htmlFor={this.props.name}>Audience id</label>
+      <div className="form-group">
+          <label className="control-label" htmlFor={this.props.name}>Audience id(s)</label>
           <Select
             multi={true}
             name={this.props.name}
             options={filterOptions}
             value={this.props.selectedOptions}
             onChange={this.props.onChange}
+            className="text-left col-lg-9 pull-right"
           />
       </div>
     );
