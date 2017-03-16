@@ -14,6 +14,7 @@ function getAveragedColumn(data, column) {
   return parseFloat(getAggregatedColumn(data, column) / data.length).toFixed(2);
 }
 
+// Taken from http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function formatNumberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
