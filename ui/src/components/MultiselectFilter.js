@@ -7,13 +7,12 @@ class MultiselectFilter extends Component {
     this.props.onChange(value);
   }
 
+  optionRenderer = (obj, index) => {
+    return <div><strong>{obj.label}</strong> ({obj.value})</div>
+  }
+
   render() {
-    const filterOptions = [
-      {value: 1, label: 'Auto'},
-      {value: 2, label: 'Sports'},
-      {value: 3, label: 'Fun'},
-      {value: 4, label: 'Profit'}
-    ];
+    const filterOptions = this.props.filterOptions;
 
     return(
       <div className="form-group">
@@ -25,6 +24,7 @@ class MultiselectFilter extends Component {
             value={this.props.selectedOptions}
             onChange={this.props.onChange}
             className="text-left col-lg-9 pull-right"
+            optionRenderer={this.optionRenderer}
           />
       </div>
     );

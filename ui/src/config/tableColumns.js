@@ -81,7 +81,7 @@ var tableColumnsConfig = [{
       headerClassName: 'text-right',
       show: true
     }]
-  }]
+  },
   // {
   //   header: 'Skip Rank',
   //   accessor: 'twentyfour_hour.ad_metrics.skip_rank',
@@ -138,13 +138,19 @@ var tableColumnsConfig = [{
   //   headerClassName: 'text-right',
   //   show: true
   // },
-  // {
-  //   header: 'PAR Score',
-  //   accessor: 'twentyfour_hour.ad_metrics.par',
-  //   className: 'text-right',
-  //   headerClassName: 'text-right',
-  //   show: true
-  // }]
+  {
+    header: ({data, column}) => <div><strong>{getAveragedColumn(data, column)}</strong></div>,
+    show: true,
+    accessor: 'twentyfour_hour.ad_metrics.par',
+    headerClassName: 'text-right',
+    columns: [{
+      header: 'PAR Score',
+      accessor: 'twentyfour_hour.ad_metrics.par',
+      headerClassName: 'text-right',
+      className: 'text-right',
+      show: true
+    }]
+  }]
 
 
 module.exports = tableColumnsConfig;

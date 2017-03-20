@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "csv-parse": "^1.2.0",
     "faker": "^4.1.0",
     "react-scripts": "0.9.0"
   },

@@ -5,6 +5,9 @@ var rl = require('readline').createInterface(
     p = 0,
     data = {};
 var faker = require('faker');
+var parse = require('csv-parse');
+var fs = require('fs');
+var AUDIENCE_IDS = [];
 
 var get = function() {
     rl.setPrompt(prompts[p] + '> ');
@@ -22,9 +25,8 @@ function randomFloatBetween(min,max,precision){
     return parseFloat(Math.min(minValue + (Math.random() * (maxValue - minValue)),maxValue).toFixed(precision));
 }
 
-function pickRandomIds(minIds, maxIds) {
-    var randomIdArray = []
-    var baseIds = [1, 2, 3, 4, 5];
+function pickRandomIds(baseIds, minIds, maxIds) {
+    var randomIdArray = [];
     var maxNumIds = Math.min(baseIds.length, maxIds);
     var numberOfIds = randomFloatBetween(minIds, maxNumIds, 0);
 
@@ -35,6 +37,10 @@ function pickRandomIds(minIds, maxIds) {
     }
 
     return randomIdArray;
+}
+
+function pickRandomAudienceIds() {
+    return pickRandomIds(AUDIENCE_IDS.concat(), 0, 5);
 }
 
 var buildPageDataArray = function (data) {
@@ -73,7 +79,7 @@ var buildPageDataArray = function (data) {
                     click_rank: randomFloatBetween(0, 1, 2)
                 }
             },
-            audienceIds: pickRandomIds(0, 4)
+            audienceIds: pickRandomAudienceIds(3, 10)
 
         }
         returnArray.push(dataObject);
@@ -83,6 +89,18 @@ var buildPageDataArray = function (data) {
 };
 
 get();
+
+function writeFile() {
+    var directoryPath = './public/';
+    var fileName = 'attention.json';
+    var fileNameAndPath = directoryPath.concat(fileName);
+    if (!fs.exists(directoryPath)) {
+        fs.mkdir(directoryPath);
+    }
+    fs.writeFileSync(fileNameAndPath, JSON.stringify(buildPageDataArray(data)));
+    console.log('File Saved.');
+    process.exit(0);
+}
 
 rl.on('line', function(line) {
     data[prompts[p - 1]] = line;
@@ -94,14 +112,15 @@ rl.on('line', function(line) {
     get();
 
 }).on('close', function() {
-    var $fs = require('fs');
-    var directoryPath = './public/';
-    var fileName = 'attention.json';
-    var fileNameAndPath = directoryPath.concat(fileName);
-    if (!$fs.exists(directoryPath)) {
-        $fs.mkdir(directoryPath);
-    }
-    $fs.writeFileSync(fileNameAndPath, JSON.stringify(buildPageDataArray(data)));
-    console.log('File Saved.');
-    process.exit(0);
+    var audienceIdsCsvPath = './../resources/Audience_id.csv';
+    fs.createReadStream(audienceIdsCsvPath)
+        .pipe(parse({delimiter: ','}))
+        .on('data', function(csvRow){
+            AUDIENCE_IDS.push(csvRow[0])
+        })
+        .on('end', function(){
+            writeFile();
+        });
+
+
 });

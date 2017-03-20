@@ -25,10 +25,9 @@ class DataTableControls extends Component {
                     name="audience-id-filter"
                     onChange={this.props.onAudienceIdFilterChange}
                     selectedOptions={this.props.selectedAudienceIds}
+                    filterOptions={this.props.audienceIdMappings}
                   />
                 </div>
-              </div>
-              <div className="row">
               </div>
             </div>
 
